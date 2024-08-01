@@ -17,6 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+model_loader.index()
 
 if __name__ == "__main__":
     uvicorn.run(app, host=conf.app_host, port=conf.app_port)
