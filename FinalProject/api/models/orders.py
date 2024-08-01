@@ -1,3 +1,4 @@
+"""
 from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME, Double
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -18,3 +19,4 @@ class Order(Base):
 
    customers = relationship("Customer", back_populates="orders")
    orders_menu_items = relationship("OrderMenuItem", back_populates="orders")
+"""

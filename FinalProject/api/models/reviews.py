@@ -1,3 +1,4 @@
+"""
 from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME, Double
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -13,3 +14,4 @@ class Review(Base):
     customer_id = Column(Integer, ForeignKey("customers.id"))
 
     customers = relationship("Customer", back_populates="reviews")
+"""

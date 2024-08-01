@@ -1,3 +1,4 @@
+"""
 from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME, Double, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -14,3 +15,4 @@ class Promotion:
 
 
    customers_payments_promotions = relationship("CustomerPaymentPromotion", back_populates = "promotions")
+"""
