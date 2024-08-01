@@ -17,6 +17,6 @@ def index():
     #orders_menu_items.Base.metadata.create_all(engine)
     #payments.Base.metadata.create_all(engine)
     #promotions.Base.metadata.create_all(engine)
-    #reviews.Base.metadata.create_all(engine)
+    reviews.Base.metadata.create_all(engine)
 
 
