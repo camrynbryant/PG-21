@@ -1,3 +1,4 @@
+"""
 from sqlalchemy import Column, ForeignKey, Integer, String, DECIMAL, DATETIME, Double, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -16,3 +17,4 @@ class CreditCard:
        PrimaryKeyConstraint("payment_id"),
        {},
    )
+"""
