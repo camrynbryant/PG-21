@@ -11,7 +11,7 @@ def index():
     #credit_cards.Base.metadata.create_all(engine)
     #customers.Base.metadata.create_all(engine)
     #customers_payments_promotions.Base.metadata.create_all(engine)
-    #ingredients.Base.metadata.create_all(engine)
+    ingredients.Base.metadata.create_all(engine)
     #menu_items.Base.metadata.create_all(engine)
     #menu_items_ingredients.Base.metadata.create_all(engine)
     #orders_menu_items.Base.metadata.create_all(engine)
