@@ -14,5 +14,5 @@ class Customer(Base):
     address = Column(String(100))
 
     reviews = relationship("Review", back_populates="customers")
-    #orders = relationship("Order", back_populates="customers")
-    #customers_payments_promotions = relationship("CustomerPaymentPromotion", back_populates = "customers")
+    orders = relationship("Order", back_populates="customers")
+    customers_payments_promotions = relationship("CustomerPaymentPromotion", back_populates = "customers")
