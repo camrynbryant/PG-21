@@ -10,9 +10,10 @@ class Order(Base):
     tracking_num = Column(Integer, primary_key=True, index=True, autoincrement=True)
     status = Column(String(50))
     date = Column(DATETIME, nullable=False, server_default=str(datetime.now()))
-    price = Column(Double())
+    price = Column(DECIMAL)
     details_link = Column(String(200))
     customer_id = Column(Integer, ForeignKey("customers.id"))
 
     customers = relationship("Customer", back_populates="orders")
-    #orders_menu_items = relationship("OrderMenuItem", back_populates="orders")
+    orders_menu_items = relationship("OrderMenuItem", back_populates="orders")
+
