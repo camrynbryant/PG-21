@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Response, Depends
-from ..models import menu_items_ingredients as model
+from ..models import orders_menu_items as model
 from sqlalchemy.exc import SQLAlchemyError
 
 
 def create(db: Session, request):
-    new_item = model.MenuItemIngredient(
-        menu_item_id = request.menu_item_id,
-        ingredient_id = request.ingredient_id
+    new_item = model.OrderMenuItem(
+        order_tracking_num = request.order_tracking_num,
+        menu_item_id = request.menu_item_id
     )
 
     try:
@@ -23,7 +23,7 @@ def create(db: Session, request):
 
 def read_all(db: Session):
     try:
-        result = db.query(model.MenuItemIngredient).all()
+        result = db.query(model.OrderMenuItem).all()
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
@@ -35,19 +35,19 @@ def read_one(db: Session, item_ids):
 
     :param db:
     :param item_ids: an object that contains the 2 attributes which make up the primary key of the
-    menu_items_ingredients table. These 2 attributes include menu_item_id and ingredient_id.
+    orders_menu_items table. These 2 attributes include order_tracking_num and menu_item_id.
     :return:
     """
     try:
+        order_tracking_num = item_ids.order_tracking_num
         menu_item_id = item_ids.menu_item_id
-        ingredient_id = item_ids.ingredient_id
 
-        item = (db.query(model.MenuItemIngredient).
-                filter(model.MenuItemIngredient.menu_item_id == menu_item_id,
-                       model.MenuItemIngredient.ingredient_id == ingredient_id).first())
+        item = (db.query(model.OrderMenuItem).
+                filter(model.OrderMenuItem.order_tracking_num == order_tracking_num,
+                       model.OrderMenuItem.menu_item_id == menu_item_id).first())
         if not item:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                detail="Menu_item_id or Ingredient_id not found!")
+                                detail="Order_tracking_num or Menu_item_id not found!")
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
@@ -55,15 +55,15 @@ def read_one(db: Session, item_ids):
 
 def update(db: Session, item_ids, request):
     try:
+        order_tracking_num = item_ids.order_tracking_num
         menu_item_id = item_ids.menu_item_id
-        ingredient_id = item_ids.ingredient_id
 
-        item = (db.query(model.MenuItemIngredient).
-                filter(model.MenuItemIngredient.menu_item_id == menu_item_id,
-                       model.MenuItemIngredient.ingredient_id == ingredient_id))
+        item = (db.query(model.OrderMenuItem).
+                filter(model.OrderMenuItem.order_tracking_num == order_tracking_num,
+                       model.OrderMenuItem.menu_item_id == menu_item_id))
         if not item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                detail="Menu_item_id or Ingredient_id not found!")
+                                detail="Order_tracking_num or Menu_item_id not found!")
         update_data = request.dict(exclude_unset=True)
         item.update(update_data, synchronize_session=False)
         db.commit()
@@ -75,15 +75,15 @@ def update(db: Session, item_ids, request):
 
 def delete(db: Session, item_ids):
     try:
+        order_tracking_num = item_ids.order_tracking_num
         menu_item_id = item_ids.menu_item_id
-        ingredient_id = item_ids.ingredient_id
 
-        item = (db.query(model.MenuItemIngredient).
-                filter(model.MenuItemIngredient.menu_item_id == menu_item_id,
-                       model.MenuItemIngredient.ingredient_id == ingredient_id))
+        item = (db.query(model.OrderMenuItem).
+                filter(model.OrderMenuItem.order_tracking_num == order_tracking_num,
+                       model.OrderMenuItem.menu_item_id == menu_item_id))
         if not item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                detail="Menu_item_id or Ingredient_id not found!")
+                                detail="Order_tracking_num or Menu_item_id not found!")
         item.delete(synchronize_session=False)
         db.commit()
     except SQLAlchemyError as e:

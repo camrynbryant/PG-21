@@ -3,8 +3,6 @@ from sqlalchemy.orm import relationship
 from datetime import datetime
 from ..dependencies.database import Base
 
-#py -m uvicorn FinalProject.api.main:app --reload
-#cd C:/Users/andmu/PycharmProjects/PG-21
 
 class CreditCard(Base):
     __tablename__ = "credit_cards"
