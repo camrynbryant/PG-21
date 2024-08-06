@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List
 
+
 class IngredientBase(BaseModel):
     name: Optional[str] = Field(None, max_length=50)
     amount: Optional[int]
@@ -8,27 +9,16 @@ class IngredientBase(BaseModel):
 
 
 class IngredientCreate(IngredientBase):
-    name: str
-    amount: int
-    amount_unit: str
-
-
-class IngredientUpdate(IngredientBase):
     pass
 
 
-class MenuItemIngredient(BaseModel):
-    id: int
-    menu_item_id: int
-    ingredient_id: int
-
-    class Config:
-        orm_mode = True
+class IngredientUpdate(BaseModel):
+    name: Optional[str] = None
+    amount: Optional[int] = None
+    amount_unit: Optional[str] = None
 
 
 class Ingredient(IngredientBase):
     id: int
-    menu_items_ingredients: List[MenuItemIngredient] = []
-
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True
