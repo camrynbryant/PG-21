@@ -3,6 +3,8 @@ from typing import Optional, List
 from datetime import datetime
 from decimal import Decimal
 
+from sqlalchemy import DECIMAL, DATETIME
+
 
 class PromotionBase(BaseModel):
     code: Optional[str] = Field(None, max_length=50)
@@ -11,30 +13,17 @@ class PromotionBase(BaseModel):
 
 
 class PromotionCreate(PromotionBase):
-    code: str
-    discount_amt: Decimal
-    expiration_date: datetime
-
-
-class PromotionUpdate(PromotionBase):
     pass
 
 
-class CustomerPaymentPromotion(BaseModel):
-    customer_id: int
-    payment_id: int
-    promotion_id: int
-
-    class Config:
-        orm_mode = True
+class PromotionUpdate(BaseModel):
+    code: Optional[str] = None
+    discount_amt: Optional[DECIMAL] = None
+    expiration_date: Optional[DATETIME] = None
 
 
 class Promotion(PromotionBase):
     id: int
-    code: str
-    discount_amt: Decimal
-    expiration_date: datetime
-    customers_payments_promotions: List[CustomerPaymentPromotion] = []
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True
