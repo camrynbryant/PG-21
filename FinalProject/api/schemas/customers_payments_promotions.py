@@ -15,7 +15,6 @@ class CustomerPaymentPromotionUpdate(BaseModel):
     promotion_id: Optional[int] = None
 
 class CustomerPaymentPromotion(CustomerPaymentPromotionBase):
-    pass
 
     #IDK if the following is necessary, maybe already handled by inherited foreign key values
     #customer: Customer
