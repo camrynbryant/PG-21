@@ -1,6 +1,8 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
+from FinalProject.api.models.customers import Customer
+
 
 class ReviewBase(BaseModel):
     description: Optional[str] = Field(None, max_length=1000)
@@ -8,18 +10,18 @@ class ReviewBase(BaseModel):
 
 
 class ReviewCreate(ReviewBase):
-    description: str
-    score: float
     customer_id: int
 
 
-class ReviewUpdate(ReviewBase):
-    pass
+class ReviewUpdate(BaseModel):
+    description: Optional[str] = None
+    score: Optional[float] = None
+    customer_id: Optional[int] = None
 
 
 class Review(ReviewBase):
     id: int
-    customer_id: int
+    customer: Customer
+    class ConfigDict:
+        from_attributes = True
 
-    class Config:
-        orm_mode = True
