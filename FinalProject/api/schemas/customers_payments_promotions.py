@@ -7,9 +7,7 @@ class CustomerPaymentPromotionBase(BaseModel):
     promotion_id: Optional[int]
 
 class CustomerPaymentPromotionCreate(CustomerPaymentPromotionBase):
-    customer_id: int
-    payment_id: int
-    promotion_id: int
+    pass
 
 class CustomerPaymentPromotionUpdate(BaseModel):
     customer_id: Optional[int] = None
@@ -17,9 +15,12 @@ class CustomerPaymentPromotionUpdate(BaseModel):
     promotion_id: Optional[int] = None
 
 class CustomerPaymentPromotion(CustomerPaymentPromotionBase):
-    customer_id: int
-    payment_id: int
-    promotion_id: int
+    pass
 
-    class Config:
-        orm_mode = True
+    #IDK if the following is necessary, maybe already handled by inherited foreign key values
+    #customer: Customer
+    #payment: Payment
+    #promotion: Promotion
+
+    class ConfigDict:
+        from_attributes = True
