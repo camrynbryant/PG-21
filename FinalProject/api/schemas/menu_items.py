@@ -2,6 +2,8 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from decimal import Decimal
 
+from sqlalchemy import DECIMAL
+
 
 class MenuItemBase(BaseModel):
     name: Optional[str] = Field(None, max_length=50)
@@ -12,38 +14,18 @@ class MenuItemBase(BaseModel):
 
 
 class MenuItemCreate(MenuItemBase):
-    name: str
-    description: str
-    price: Decimal
-    calories: int
-    food_category: str
-
-
-class MenuItemUpdate(MenuItemBase):
     pass
 
 
-class OrderMenuItem(BaseModel):
-    id: int
-    order_id: int
-    menu_item_id: int
+class MenuItemUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[DECIMAL] = None
+    calories: Optional[int] = None
+    food_category: Optional[str] = None
 
-    class Config:
-        orm_mode = True
-
-
-class MenuItemIngredient(BaseModel):
-    id: int
-    menu_item_id: int
-    ingredient_id: int
-
-    class Config:
-        orm_mode = True
 
 class MenuItem(MenuItemBase):
     id: int
-    orders_menu_items: List[OrderMenuItem] = []
-    menu_items_ingredients: List[MenuItemIngredient] = []
-
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True
