@@ -20,7 +20,7 @@ class MenuItemIngredient(MenuItemIngredientBase):
     menu_item_id: int
     ingredient_id: int
 
-    # IDK if the following is necessary, maybe already handled by inherited foreign key values
+    # IDK if the following is necessary, maybe already handled by foreign key values
     # menu_item: MenuItem
     # ingredient: Ingredient
     class ConfigDict:
