@@ -3,10 +3,10 @@ from typing import Optional, List
 
 
 class CustomerBase(BaseModel):
-    name: Optional[str] = Field(None, max_length=50)
-    email: Optional[str] = Field(None, max_length=50)
-    phone_number: Optional[str] = Field(None, max_length=20)
-    address: Optional[str] = Field(None, max_length=100)
+    name: str
+    email: str
+    phone_number: str
+    address: str
 
 
 class CustomerCreate(CustomerBase):
