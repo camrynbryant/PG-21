@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -23,3 +24,4 @@ class CreditCard(CreditCardBase):
     # payment: Payment
     class Config:
         orm_mode = True
+"""

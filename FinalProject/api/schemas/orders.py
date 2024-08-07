@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
@@ -9,9 +10,9 @@ from FinalProject.api.models.customers import Customer
 
 
 class OrderBase(BaseModel):
-    status: Optional[str] = Field(None, max_length=50)
-    price: Optional[Decimal]
-    details_link: Optional[str] = Field(None, max_length=200)
+    status: str
+    price: float
+    details_link: str
 
 
 class OrderCreate(OrderBase):
@@ -20,7 +21,7 @@ class OrderCreate(OrderBase):
 
 class OrderUpdate(BaseModel):
     status: Optional[str] = None
-    price: Optional[DECIMAL] = None
+    price: Optional[float] = None
     details_link: Optional[str] = None
     customer_id: Optional[int] = None
 
@@ -31,3 +32,4 @@ class Order(OrderBase):
 
     class ConfigDict:
         from_attributes = True
+"""

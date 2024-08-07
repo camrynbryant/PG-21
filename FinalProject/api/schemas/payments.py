@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel, Field
 from typing import Optional, List
 
@@ -17,3 +18,4 @@ class Payment(PaymentBase):
     id: int
     class ConfigDict:
         from_attributes = True
+"""

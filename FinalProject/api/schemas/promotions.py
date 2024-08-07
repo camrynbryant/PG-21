@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
@@ -8,7 +9,7 @@ from sqlalchemy import DECIMAL, DATETIME
 
 class PromotionBase(BaseModel):
     code: Optional[str] = Field(None, max_length=50)
-    discount_amt: Optional[Decimal]
+    discount_amt: Optional[float]
     expiration_date: Optional[datetime]
 
 
@@ -18,7 +19,7 @@ class PromotionCreate(PromotionBase):
 
 class PromotionUpdate(BaseModel):
     code: Optional[str] = None
-    discount_amt: Optional[DECIMAL] = None
+    discount_amt: Optional[float] = None
     expiration_date: Optional[DATETIME] = None
 
 
@@ -27,3 +28,4 @@ class Promotion(PromotionBase):
 
     class ConfigDict:
         from_attributes = True
+"""

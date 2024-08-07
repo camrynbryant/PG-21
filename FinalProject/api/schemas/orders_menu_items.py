@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel
 from typing import Optional
 
@@ -17,3 +18,4 @@ class OrderMenuItem(OrderMenuItemBase):
     # menu_item: MenuItem
     class ConfigDict:
         from_attributes = True
+"""

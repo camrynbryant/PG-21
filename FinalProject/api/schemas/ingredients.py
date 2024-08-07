@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel, Field
 from typing import Optional, List
 
@@ -22,3 +23,4 @@ class Ingredient(IngredientBase):
     id: int
     class ConfigDict:
         from_attributes = True
+"""

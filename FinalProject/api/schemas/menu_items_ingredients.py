@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel
 from typing import Optional
 
@@ -25,3 +26,4 @@ class MenuItemIngredient(MenuItemIngredientBase):
     # ingredient: Ingredient
     class ConfigDict:
         from_attributes = True
+"""

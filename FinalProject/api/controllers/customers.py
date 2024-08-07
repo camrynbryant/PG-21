@@ -8,7 +8,7 @@ def create(db: Session, request):
     new_item = model.Customer(
         name = request.name,
         email = request.email,
-        phone_number = request.phone_num,
+        phone_number = request.phone_number,
         address = request.address
     )
 
