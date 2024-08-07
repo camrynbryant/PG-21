@@ -1,4 +1,4 @@
-"""
+
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
@@ -20,7 +20,7 @@ class PromotionCreate(PromotionBase):
 class PromotionUpdate(BaseModel):
     code: Optional[str] = None
     discount_amt: Optional[float] = None
-    expiration_date: Optional[DATETIME] = None
+    expiration_date: Optional[datetime] = None
 
 
 class Promotion(PromotionBase):
@@ -28,4 +28,3 @@ class Promotion(PromotionBase):
 
     class ConfigDict:
         from_attributes = True
-"""

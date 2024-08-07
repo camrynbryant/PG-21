@@ -1,4 +1,3 @@
-"""
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from decimal import Decimal
@@ -30,4 +29,3 @@ class MenuItem(MenuItemBase):
     id: int
     class ConfigDict:
         from_attributes = True
-"""

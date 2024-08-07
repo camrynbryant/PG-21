@@ -34,13 +34,13 @@ def read_one(db: Session, item_ids):
     """
 
     :param db:
-    :param item_ids: an object that contains the 2 attributes which make up the primary key of the
+    :param item_ids: a list that contains the 2 attributes which make up the primary key of the
     orders_menu_items table. These 2 attributes include order_tracking_num and menu_item_id.
     :return:
     """
     try:
-        order_tracking_num = item_ids.order_tracking_num
-        menu_item_id = item_ids.menu_item_id
+        order_tracking_num = item_ids[0]
+        menu_item_id = item_ids[1]
 
         item = (db.query(model.OrderMenuItem).
                 filter(model.OrderMenuItem.order_tracking_num == order_tracking_num,
@@ -55,8 +55,8 @@ def read_one(db: Session, item_ids):
 
 def update(db: Session, item_ids, request):
     try:
-        order_tracking_num = item_ids.order_tracking_num
-        menu_item_id = item_ids.menu_item_id
+        order_tracking_num = item_ids[0]
+        menu_item_id = item_ids[1]
 
         item = (db.query(model.OrderMenuItem).
                 filter(model.OrderMenuItem.order_tracking_num == order_tracking_num,
@@ -75,8 +75,8 @@ def update(db: Session, item_ids, request):
 
 def delete(db: Session, item_ids):
     try:
-        order_tracking_num = item_ids.order_tracking_num
-        menu_item_id = item_ids.menu_item_id
+        order_tracking_num = item_ids[0]
+        menu_item_id = item_ids[1]
 
         item = (db.query(model.OrderMenuItem).
                 filter(model.OrderMenuItem.order_tracking_num == order_tracking_num,

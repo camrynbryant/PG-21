@@ -1,4 +1,3 @@
-"""
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -22,7 +21,8 @@ class ReviewUpdate(BaseModel):
 
 class Review(ReviewBase):
     id: int
-    customer: Customer
+    customer_id: int
+    #customer: Customer
     class ConfigDict:
         from_attributes = True
-"""
+

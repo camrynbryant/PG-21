@@ -6,9 +6,9 @@ from sqlalchemy.exc import SQLAlchemyError
 
 def create(db: Session, request):
     new_item = model.CustomerPaymentPromotion(
-        customer_id = request.customers,
-        payment_id = request.payments,
-        promotion_id = request.promotions
+        customer_id = request.customer_id,
+        payment_id = request.payment_id,
+        promotion_id = request.promotion_id
     )
 
     try:
@@ -35,14 +35,14 @@ def read_one(db: Session, item_ids):
     """
 
     :param db:
-    :param item_ids: an object that contains the 3 attributes which make up the primary key of the
+    :param item_ids: a list that contains the 3 attributes which make up the primary key of the
     customers_payments_promotions table. These 3 attributes include customer_id, payment_id, and promotion_id.
     :return:
     """
     try:
-        customer_id = item_ids.customer_id
-        payment_id = item_ids.payment_id
-        promotion_id = item_ids.promotion_id
+        customer_id = item_ids[0]
+        payment_id = item_ids[1]
+        promotion_id = item_ids[2]
 
         item = (db.query(model.CustomerPaymentPromotion).
                 filter(model.CustomerPaymentPromotion.customer_id == customer_id,
@@ -57,9 +57,9 @@ def read_one(db: Session, item_ids):
 
 def update(db: Session, item_ids, request):
     try:
-        customer_id = item_ids.customer_id
-        payment_id = item_ids.payment_id
-        promotion_id = item_ids.promotion_id
+        customer_id = item_ids[0]
+        payment_id = item_ids[1]
+        promotion_id = item_ids[2]
 
         item = (db.query(model.CustomerPaymentPromotion)
                 .filter(model.CustomerPaymentPromotion.customer_id == customer_id,
@@ -79,9 +79,9 @@ def update(db: Session, item_ids, request):
 
 def delete(db: Session, item_ids):
     try:
-        customer_id = item_ids.customer_id
-        payment_id = item_ids.payment_id
-        promotion_id = item_ids.promotion_id
+        customer_id = item_ids[0]
+        payment_id = item_ids[1]
+        promotion_id = item_ids[2]
 
         item = (db.query(model.CustomerPaymentPromotion)
                 .filter(model.CustomerPaymentPromotion.customer_id == customer_id,
