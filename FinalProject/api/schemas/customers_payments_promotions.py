@@ -1,3 +1,4 @@
+"""
 from pydantic import BaseModel
 from typing import Optional
 
@@ -23,3 +24,4 @@ class CustomerPaymentPromotion(CustomerPaymentPromotionBase):
 
     class ConfigDict:
         from_attributes = True
+"""
