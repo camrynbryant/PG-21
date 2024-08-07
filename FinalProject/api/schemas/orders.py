@@ -29,7 +29,7 @@ class OrderUpdate(BaseModel):
 class Order(OrderBase):
     tracking_num: int
     date: datetime
-    customer_id: int
+    customer: Customer = None
 
     class ConfigDict:
         from_attributes = True
