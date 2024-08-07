@@ -8,6 +8,7 @@ def create(db: Session, request):
     new_item = model.Order(
         status = request.status,
         price = request.price,
+        type = request.type,
         details_link = request.details_link,
         customer_id = request.customer_id
     )
@@ -26,6 +27,15 @@ def create(db: Session, request):
 def read_all(db: Session):
     try:
         result = db.query(model.Order).all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result
+
+def read_pending_preparation(db: Session):
+    """Get all orders that have yet to be prepared by the chef, thus having status = 'Preparing food' """
+    try:
+        result = db.query(model.Order).filter(model.Order.status == "Preparing food")
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)

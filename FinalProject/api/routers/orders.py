@@ -15,9 +15,15 @@ def create(request: schema.OrderCreate, db: Session = Depends(get_db)):
     return controller.create(db=db, request=request)
 
 
-@router.get("/", response_model=list[schema.Order])
-def read_all(db: Session = Depends(get_db)):
+@router.get("/customer", response_model=list[schema.Order])
+def read_all_as_customer(db: Session = Depends(get_db)):
+    """Customer view of all orders data"""
     return controller.read_all(db)
+
+@router.get("/chef", response_model=list[schema.Order])
+def read_all_as_chef(db: Session = Depends(get_db)):
+    """Chef view of all orders data"""
+    return controller.read_pending_preparation(db)
 
 
 @router.get("/{item_id}", response_model=schema.Order)

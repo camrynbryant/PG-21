@@ -1,18 +1,19 @@
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, fields, computed_field, SerializeAsAny
 from typing import Optional, List
 from datetime import datetime
 from decimal import Decimal
 
 from sqlalchemy import DECIMAL, Double
 
-from .customers import Customer
+from FinalProject.api.schemas.customers import CustomerBase
 
 
 class OrderBase(BaseModel):
     status: str
     price: float
     details_link: str
+    type: str
 
 
 class OrderCreate(OrderBase):
@@ -24,12 +25,13 @@ class OrderUpdate(BaseModel):
     price: Optional[float] = None
     details_link: Optional[str] = None
     customer_id: Optional[int] = None
+    type: Optional[str] = None
 
 
 class Order(OrderBase):
     tracking_num: int
     date: datetime
-    customer: Customer = None
+    customer_id: int
 
     class ConfigDict:
         from_attributes = True

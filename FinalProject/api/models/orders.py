@@ -11,6 +11,7 @@ class Order(Base):
     status = Column(String(50))
     date = Column(DATETIME, nullable=False, server_default=str(datetime.now()))
     price = Column(Float)
+    type = Column(String(200))
     details_link = Column(String(200))
     customer_id = Column(Integer, ForeignKey("customers.id"))
 
