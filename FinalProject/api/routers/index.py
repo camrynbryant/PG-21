@@ -1,5 +1,7 @@
 from . import customers, orders, payments, promotions, reviews, ingredients, credit_cards, menu_items, \
-    customers_payments_promotions, orders_menu_items, menu_items_ingr
+    customers_payments_promotions, orders_menu_items, menu_items_ingredients
+
+
 def load_routes(app):
     app.include_router(customers.router)
     app.include_router(orders.router)
