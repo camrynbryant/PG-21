@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from fastapi import HTTPException, status, Response, Depends
 from ..models import orders as model
 from sqlalchemy.exc import SQLAlchemyError
@@ -78,3 +78,12 @@ def delete(db: Session, item_id):
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+def read_num_orders(db: Session):
+    return db.query(model.Order).count()
+
+def read_num_delivered_orders(db: Session):
+    return db.query(model.Order).filter(model.Order.status == "Delivered").count()
+
+def read_num_pending_orders(db: Session):
+    return db.query(model.Order).filter(model.Order.status == "Preparing food").count()

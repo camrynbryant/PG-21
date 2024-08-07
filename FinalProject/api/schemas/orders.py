@@ -1,4 +1,3 @@
-
 from pydantic import BaseModel, Field, fields, computed_field, SerializeAsAny
 from typing import Optional, List
 from datetime import datetime
@@ -6,7 +5,6 @@ from decimal import Decimal
 
 from sqlalchemy import DECIMAL, Double
 
-from FinalProject.api.schemas.customers import CustomerBase
 
 
 class OrderBase(BaseModel):
@@ -36,3 +34,9 @@ class Order(OrderBase):
     class ConfigDict:
         from_attributes = True
 
+class OrderNum(BaseModel):
+    num_orders: int
+
+
+class NumOrder:
+    pass
