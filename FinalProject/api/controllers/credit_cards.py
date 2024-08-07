@@ -6,6 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 def create(db: Session, request):
     new_item = model.CreditCard(
+        payment_id = request.payment_id,
         card_num  = request.card_num,
         cvc = request.cvc
     )

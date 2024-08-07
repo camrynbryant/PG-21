@@ -1,4 +1,3 @@
-"""
 from pydantic import BaseModel
 from typing import Optional
 
@@ -15,6 +14,7 @@ class MenuItemIngredientCreate(MenuItemIngredientBase):
 class MenuItemIngredientUpdate(BaseModel):
     menu_item_id: int
     ingredient_id: int
+    amount: int
 
 
 class MenuItemIngredient(MenuItemIngredientBase):
@@ -26,4 +26,3 @@ class MenuItemIngredient(MenuItemIngredientBase):
     # ingredient: Ingredient
     class ConfigDict:
         from_attributes = True
-"""

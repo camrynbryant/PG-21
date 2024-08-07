@@ -1,32 +1,32 @@
 from fastapi import APIRouter, Depends, FastAPI, status, Response
 from sqlalchemy.orm import Session
-from ..controllers import orders as controller
-from ..schemas import orders as schema
+from ..controllers import promotions as controller
+from ..schemas import promotions as schema
 from ..dependencies.database import engine, get_db
 
 router = APIRouter(
-    tags=['Orders'],
-    prefix="/orders"
+    tags=['Promotions'],
+    prefix="/promotions"
 )
 
 
-@router.post("/", response_model=schema.Order)
-def create(request: schema.OrderCreate, db: Session = Depends(get_db)):
+@router.post("/", response_model=schema.Promotion)
+def create(request: schema.PromotionCreate, db: Session = Depends(get_db)):
     return controller.create(db=db, request=request)
 
 
-@router.get("/", response_model=list[schema.Order])
+@router.get("/", response_model=list[schema.Promotion])
 def read_all(db: Session = Depends(get_db)):
     return controller.read_all(db)
 
 
-@router.get("/{item_id}", response_model=schema.Order)
+@router.get("/{item_id}", response_model=schema.Promotion)
 def read_one(item_id: int, db: Session = Depends(get_db)):
     return controller.read_one(db, item_id=item_id)
 
 
-@router.put("/{item_id}", response_model=schema.Order)
-def update(item_id: int, request: schema.OrderUpdate, db: Session = Depends(get_db)):
+@router.put("/{item_id}", response_model=schema.Promotion)
+def update(item_id: int, request: schema.PromotionUpdate, db: Session = Depends(get_db)):
     return controller.update(db=db, request=request, item_id=item_id)
 
 

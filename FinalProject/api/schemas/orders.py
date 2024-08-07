@@ -1,12 +1,12 @@
-"""
+
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import DECIMAL
+from sqlalchemy import DECIMAL, Double
 
-from FinalProject.api.models.customers import Customer
+from .customers import Customer
 
 
 class OrderBase(BaseModel):
@@ -28,8 +28,9 @@ class OrderUpdate(BaseModel):
 
 class Order(OrderBase):
     tracking_num: int
-    customer: Customer
+    date: datetime
+    customer_id: int
 
     class ConfigDict:
         from_attributes = True
-"""
+

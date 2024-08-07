@@ -7,7 +7,8 @@ from sqlalchemy.exc import SQLAlchemyError
 def create(db: Session, request):
     new_item = model.MenuItemIngredient(
         menu_item_id = request.menu_item_id,
-        ingredient_id = request.ingredient_id
+        ingredient_id = request.ingredient_id,
+        amount = request.amount
     )
 
     try:
@@ -34,13 +35,13 @@ def read_one(db: Session, item_ids):
     """
 
     :param db:
-    :param item_ids: an object that contains the 2 attributes which make up the primary key of the
+    :param item_ids: a list that contains the 2 attributes which make up the primary key of the
     menu_items_ingredients table. These 2 attributes include menu_item_id and ingredient_id.
     :return:
     """
     try:
-        menu_item_id = item_ids.menu_item_id
-        ingredient_id = item_ids.ingredient_id
+        menu_item_id = item_ids[0]
+        ingredient_id = item_ids[1]
 
         item = (db.query(model.MenuItemIngredient).
                 filter(model.MenuItemIngredient.menu_item_id == menu_item_id,
@@ -55,8 +56,8 @@ def read_one(db: Session, item_ids):
 
 def update(db: Session, item_ids, request):
     try:
-        menu_item_id = item_ids.menu_item_id
-        ingredient_id = item_ids.ingredient_id
+        menu_item_id = item_ids[0]
+        ingredient_id = item_ids[1]
 
         item = (db.query(model.MenuItemIngredient).
                 filter(model.MenuItemIngredient.menu_item_id == menu_item_id,
@@ -75,8 +76,8 @@ def update(db: Session, item_ids, request):
 
 def delete(db: Session, item_ids):
     try:
-        menu_item_id = item_ids.menu_item_id
-        ingredient_id = item_ids.ingredient_id
+        menu_item_id = item_ids[0]
+        ingredient_id = item_ids[1]
 
         item = (db.query(model.MenuItemIngredient).
                 filter(model.MenuItemIngredient.menu_item_id == menu_item_id,
