@@ -33,8 +33,8 @@ of the code pertaining to the restaurant.
 ## How to run the application:
 
 ### Create and connect to the MySQL database
-Make a .env file in the dependencies package and initialize the following variables
-with relevant values using this format. Don't include quotation marks.
+Make a .env file in the dependencies package. Initialize the following key-value pairs
+with relevant values using this format. Don't include quotation marks when storing values.
 
 db_host=localhost<br>
 db_name=restaurant_db<br>
