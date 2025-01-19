@@ -33,15 +33,16 @@ of the code pertaining to the restaurant.
 ## How to run the application:
 
 ### Create and connect to the MySQL database
-Then make a .env file in the dependencies package and initialize the following variables.
+Make a .env file in the dependencies package and initialize the following variables
+with relevant values using this format. Don't include quotation marks.
 
-* db_host
-* db_name
-* db_port
-* db_user
-* db_password
-* app_host
-* app_port
+db_host=localhost<br>
+db_name=restaurant_db<br>
+db_port=8080<br>
+db_user=root<br>
+db_password=password<br>
+app_host=localhost<br>
+app_port=8000
 
 Ensure the .env file is in .gitignore if sharing the project with anyone.
 
@@ -54,6 +55,7 @@ Ensure the .env file is in .gitignore if sharing the project with anyone.
 * `pip install pytest-mock`
 * `pip install httpx`
 * `pip install cryptography`
+* `pip install python_dotenv`
 
 ### Run the server:
 `uvicorn api.main:app --reload`
