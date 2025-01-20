@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from FinalProject.api.models.customers import Customer
+from api.models.customers import Customer
 
 
 class ReviewBase(BaseModel):
