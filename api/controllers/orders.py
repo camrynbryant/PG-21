@@ -32,16 +32,6 @@ def read_all(db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return result
 
-def read_pending_preparation(db: Session):
-    """Get all orders that have yet to be prepared by the chef, thus having status = 'Preparing food' """
-    try:
-        result = db.query(model.Order).filter(model.Order.status == "Preparing food")
-    except SQLAlchemyError as e:
-        error = str(e.__dict__['orig'])
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
-    return result
-
-
 def read_one(db: Session, item_id):
     try:
         item = db.query(model.Order).filter(model.Order.tracking_num == item_id).first()
@@ -79,11 +69,29 @@ def delete(db: Session, item_id):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+def read_all_customer(customer_id: int, db: Session):
+    """Get all orders made by a specific customer"""
+    try:
+        result = db.query(model.Order).filter_by(customer_id=customer_id).all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result
+
+def read_preparing_orders(db: Session):
+    """Get all orders that the chef is currently working on, thus having status of 'Preparing order' """
+    try:
+        result = db.query(model.Order).filter(model.Order.status == "Preparing order").all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+    return result
+
 def read_num_orders(db: Session):
     return db.query(model.Order).count()
 
 def read_num_delivered_orders(db: Session):
     return db.query(model.Order).filter(model.Order.status == "Delivered").count()
 
-def read_num_pending_orders(db: Session):
-    return db.query(model.Order).filter(model.Order.status == "Preparing food").count()
+def read_num_preparing_orders(db: Session):
+    return db.query(model.Order).filter(model.Order.status == "Preparing order").count()

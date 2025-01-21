@@ -6,3 +6,4 @@ pytest
 pytest-mock
 httpx
 cryptography
+python-dotenv
