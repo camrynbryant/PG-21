@@ -36,7 +36,7 @@ of the code pertaining to the restaurant.
 Make a .env file in the dependencies package. Initialize the following key-value pairs
 with relevant values using this format. Don't include quotation marks when storing values.
 
-'''
+```
 db_host=localhost<br>
 db_name=restaurant_db<br>
 db_port=8080<br>
@@ -44,14 +44,12 @@ db_user=root<br>
 db_password=password<br>
 app_host=localhost<br>
 app_port=8000
-'''
+```
 
 Ensure the .env file is in .gitignore if sharing the project with anyone.
 
 ### Install necessary packages:  
-'''
-pip install -r requirements.txt
-'''
+`pip install -r requirements.txt`
 
 ### Run the server:
 `uvicorn api.main:app --reload`
