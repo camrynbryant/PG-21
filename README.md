@@ -37,13 +37,13 @@ Make a .env file in the dependencies package. Initialize the following key-value
 with relevant values using this format. Don't include quotation marks when storing values.
 
 ```
-db_host=localhost<br>
-db_name=restaurant_db<br>
-db_port=8080<br>
-db_user=root<br>
-db_password=password<br>
-app_host=localhost<br>
-app_port=8000
+db_host=localhost
+db_name=restaurant_db
+db_port=9999
+db_user=root
+db_password=password
+app_host=localhost
+app_port=9999
 ```
 
 Ensure the .env file is in .gitignore if sharing the project with anyone.
